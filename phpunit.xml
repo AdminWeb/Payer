@@ -25,7 +25,7 @@
         <log type="coverage-html" target="tests/_reports/html"
              lowUpperBound="50" highLowerBound="80"/>
         <log type="testdox-html" target="tests/_reports/html/testdox.html" />
-        <log type="coverage-clover" target="tests/_reports/clover"
+        <log type="coverage-clover" target="tests/_reports/clover.xml"
              lowUpperBound="50" highLowerBound="80"/>
     </logging>
     <php>
