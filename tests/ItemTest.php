@@ -49,6 +49,17 @@ class ItemTest extends TestCase
         new Item(90857308950345, '1', '0');
     }
 
+    /**
+     * @test
+     * @covers \AdminWeb\Payer\Itemable\Item
+     */
+    public function setAndGetIdItem()
+    {
+        $item = new Item('test', '1', '1');
+        $item->setId(2);
+        $this->assertEquals(2, $item->getId());
+    }
+
     public function testGetTotal()
     {
         $item = new Item('teste', '1', '5');

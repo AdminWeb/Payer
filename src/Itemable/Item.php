@@ -12,7 +12,7 @@ namespace AdminWeb\Payer\Itemable;
 class Item implements ItemableInterface
 {
 
-    private $name, $quantity, $amount;
+    private $name, $quantity, $amount, $id = null;
 
     /**
      * Item constructor.
@@ -88,6 +88,24 @@ class Item implements ItemableInterface
             throw new ItemException('The amount of item must be a number and greater than 0!');
         }
         $this->amount = $amount;
+        return $this;
+    }
+
+    /**
+     * @return null
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param null $id
+     * @return Item
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
         return $this;
     }
 
