@@ -19,7 +19,7 @@ class ItemTest extends TestCase
      */
     public function testSetQuantity()
     {
-        $item = new Item('teste', '0', '1');
+        new Item('teste', '0', '1');
     }
 
     /**
@@ -28,7 +28,7 @@ class ItemTest extends TestCase
      */
     public function testSetAmount()
     {
-        $item = new Item('teste', '1', '0');
+        new Item('teste', '1', '0');
     }
 
     /**
@@ -39,13 +39,14 @@ class ItemTest extends TestCase
         $item = new Item('teste', '1', '1');
         $this->assertEquals('teste', $item->getName());
     }
+
     /**
      * @covers \AdminWeb\Payer\Itemable\Item
      * @expectedException \AdminWeb\Payer\Itemable\ItemException
      */
     public function testSetName()
     {
-        $item = new Item(90857308950345, '1', '0');
+        new Item(90857308950345, '1', '0');
     }
 
     public function testGetTotal()
