@@ -67,8 +67,8 @@ class ItemTest extends TestCase
     public function setAndGetIdItem()
     {
         $item = new Item('test', '1', '1');
-        $item->setId(2);
-        $this->assertEquals(2, $item->getId());
+        $item->setidItem(2);
+        $this->assertEquals(2, $item->getidItem());
     }
 
     public function testGetTotal()

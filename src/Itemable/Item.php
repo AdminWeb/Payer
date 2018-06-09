@@ -12,7 +12,7 @@ namespace AdminWeb\Payer\Itemable;
 class Item implements ItemableInterface
 {
 
-    private $name, $quantity, $amount, $id = null;
+    private $name, $quantity, $amount, $idItem = null;
 
     /**
      * Item constructor.
@@ -94,18 +94,18 @@ class Item implements ItemableInterface
     /**
      * @return null
      */
-    public function getId()
+    public function getidItem()
     {
-        return $this->id;
+        return $this->idItem;
     }
 
     /**
      * @param null $id
      * @return Item
      */
-    public function setId($id)
+    public function setidItem($idItem)
     {
-        $this->id = $id;
+        $this->idItem = $idItem;
         return $this;
     }
 
