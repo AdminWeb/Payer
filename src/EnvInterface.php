@@ -13,4 +13,6 @@ interface EnvInterface
 {
     const SandBox = 'SANDBOX';
     const Production = 'PRODUCTION';
+
+    public function getUri();
 }
