@@ -27,7 +27,9 @@
     "illuminate/http": "~5.6",
     "illuminate/routing": "~5.6",
     "illuminate/view": "~5.6",
-    "orchestra/testbench": "3.6"
+    "orchestra/testbench": "3.6",
+    "php-coveralls/php-coveralls": "^2.1",
+    "phpunit/phpcov": "^5.0"
   },
   "authors": [
     {

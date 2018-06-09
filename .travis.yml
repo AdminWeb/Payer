@@ -8,6 +8,5 @@ before_script:
 script:
 - phpunit
 
-cache:
-  directories:
-   - vendor
+after_success:
+ - travis_retry php vendor/bin/php-coveralls -v
