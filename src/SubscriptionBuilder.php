@@ -185,6 +185,7 @@ class SubscriptionBuilder
     {
         $this->setEnd($end);
         $this->setTrial($trial);
+        $this->setProvider();
         $subscription = Subscription::create([
             'name' => $this->getName(),
             'plan' => $this->getPlan(),
