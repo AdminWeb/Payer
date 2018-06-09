@@ -50,6 +50,17 @@ class ItemTest extends TestCase
     }
 
     /**
+     * @covers \AdminWeb\Payer\Itemable\Item
+     */
+    public function testFormatAmount()
+    {
+       $item =  new Item('test', '1', 599);
+       $this->assertEquals(599.00, $item->getAmount());
+       $item =  new Item('test', '1', 599.99);
+       $this->assertEquals(599.99, $item->getAmount());
+    }
+
+    /**
      * @test
      * @covers \AdminWeb\Payer\Itemable\Item
      */

@@ -9,7 +9,6 @@
 namespace AdminWeb\Payer\Tests;
 
 use AdminWeb\Payer\Itemable\Item;
-use AdminWeb\Payer\Itemable\ItemException;
 use AdminWeb\Payer\Itemable\ItemList;
 use PHPUnit\Framework\TestCase;
 
