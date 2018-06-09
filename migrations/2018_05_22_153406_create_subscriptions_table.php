@@ -26,6 +26,7 @@ class CreateSubscriptionsTable extends Migration
             $table->unsignedInteger('subscriptionable_id')->index();
             $table->string('subscriptionable_type')->index();
             $table->string('name')->nullable();
+            $table->float('value', 10, 2)->nullable();
             $table->string('transaction_id')->nullable();
             $table->string('reference_id')->nullable();
             $table->string('status')->default('PENDENT');

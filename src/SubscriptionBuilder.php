@@ -8,21 +8,36 @@
 
 namespace AdminWeb\Payer;
 
-use AdminWeb\Payer\States\StateInterface;
+use AdminWeb\Payer\Itemable\ItemableInterface;
 use DateTime;
 use Illuminate\Support\Str;
 
 class SubscriptionBuilder
 {
     private $owner;
-    private $transaction;
     private $reference;
-    /**
-     * @var StateInterface
-     */
-    private $status;
     private $provider;
     private $plan;
+    private $item;
+
+    /**
+     * @return mixed
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    /**
+     * @param mixed $item
+     * @return SubscriptionBuilder
+     */
+    public function setItem(ItemableInterface $item)
+    {
+        $this->item = $item;
+        return $this;
+    }
+
     /**
      * @var DateTime
      */
@@ -174,6 +189,7 @@ class SubscriptionBuilder
             'name' => $this->getName(),
             'plan' => $this->getPlan(),
             'provider' => $this->getProvider(),
+            'value' => $this->getItem()->getTotal(),
             'reference_id' => $this->getReference(),
             'subscriptionable_id' => $this->getOwner()->id,
             'subscriptionable_type' => get_class($this->getOwner()),

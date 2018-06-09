@@ -8,6 +8,7 @@
 
 namespace AdminWeb\Payer\Tests;
 
+use AdminWeb\Payer\Itemable\Item;
 use AdminWeb\Payer\PayerServiceProvider;
 use AdminWeb\Payer\States\StateInterface;
 use AdminWeb\Payer\Tests\Fixtures\User;
@@ -49,7 +50,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $user->createSubscription('teste', $item)->start();
         $this->assertCount(1, $user->getPendentsSubscriptions()->get());
         $this->assertCount(0, $user->getApprovedSubscriptions()->get());
         $this->assertCount(0, $user->getCancelledSubscriptions()->get());
@@ -67,7 +69,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $this->assertCount(1, $user->getSubscription()->get());
         $this->assertEquals(StateInterface::Pendent, $user->getSubscription()->get()->first()->status);
         $this->assertTrue($sub->isPending());
@@ -84,7 +87,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $this->assertCount(1, $user->getPendentsSubscriptions()->get());
         $this->assertCount(0, $user->getApprovedSubscriptions()->get());
         $this->assertCount(0, $user->getCancelledSubscriptions()->get());
@@ -108,7 +112,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $this->assertCount(1, $user->getPendentsSubscriptions()->get());
         $this->assertCount(0, $user->getApprovedSubscriptions()->get());
         $this->assertCount(0, $user->getCancelledSubscriptions()->get());
@@ -132,7 +137,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $this->assertCount(1, $user->getPendentsSubscriptions()->get());
         $this->assertCount(0, $user->getApprovedSubscriptions()->get());
         $this->assertCount(0, $user->getCancelledSubscriptions()->get());
@@ -156,7 +162,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start(Carbon::now());
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start(Carbon::now());
         $this->assertTrue($sub->onTrial());
     }
 
@@ -171,7 +178,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->approve();
         $sub->cancel();
         $this->assertTrue($sub->isCancelled());
@@ -189,7 +197,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->cancel();
         $sub->approve();
     }
@@ -206,10 +215,12 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->cancel();
         $sub->pay();
     }
+
     /**
      * @test
      * @cover Subscription
@@ -222,7 +233,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->cancel();
         $sub->pay();
     }
@@ -239,7 +251,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->cancel();
         $sub->approve();
     }
@@ -256,10 +269,12 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->cancel();
         $sub->cancel();
     }
+
     /**
      * @test
      * @cover Subscription
@@ -272,10 +287,12 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->approve();
         $sub->approve();
     }
+
     /**
      * @test
      * @cover Subscription
@@ -288,7 +305,8 @@ class PayerTest extends TestCase
             'name' => 'Igor de Paula',
             'password' => '123'
         ]);
-        $sub = $user->createSubscription('teste')->start();
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)->start();
         $sub->pay();
         $sub->pay();
     }

@@ -8,17 +8,18 @@
 
 namespace AdminWeb\Payer;
 
+use AdminWeb\Payer\Itemable\ItemableInterface;
 use AdminWeb\Payer\States\StateInterface;
 
 
 trait Subscriptionable
 {
-    public function createSubscription($name, $provider = null, $plan = null)
+    public function createSubscription($name, ItemableInterface $item)
     {
         $subscription = new SubscriptionBuilder($this);
-        $subscription->setPlan($plan)
-                     ->setProvider($provider)
-                     ->setName($name);
+        $subscription->setPlan($name)
+            ->setItem($item)
+            ->setName($name);
         return $subscription;
     }
 
