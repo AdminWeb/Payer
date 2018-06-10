@@ -15,4 +15,8 @@ interface EnvInterface
     const Production = 'PRODUCTION';
 
     public function getUri();
+
+    public function getCredential();
+
+    public function getToken();
 }
