@@ -17,4 +17,7 @@ cache:
   directories:
     - vendor
 after_script:
-  - ./cc-test-reporter --debug after-build --exit-code $TRAVIS_TEST_RESULT
+  - mkdir build
+  - mkdir build/logs
+  - cp tests/_reports/clover.xml build/logs/
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
