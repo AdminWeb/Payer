@@ -1,7 +1,7 @@
 {
   "name": "adminweb/payer",
   "description":"A new package for payments for laravel",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "license": "MIT",
   "require": {
     "php": "^7.1.3",

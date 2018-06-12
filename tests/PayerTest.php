@@ -11,6 +11,7 @@ namespace AdminWeb\Payer\Tests;
 use AdminWeb\Payer\Itemable\Item;
 use AdminWeb\Payer\PayerServiceProvider;
 use AdminWeb\Payer\States\StateInterface;
+use AdminWeb\Payer\Subscription;
 use AdminWeb\Payer\Tests\Fixtures\User;
 use Carbon\Carbon;
 use Orchestra\Testbench\TestCase;
@@ -56,6 +57,23 @@ class PayerTest extends TestCase
         $this->assertCount(0, $user->getApprovedSubscriptions()->get());
         $this->assertCount(0, $user->getCancelledSubscriptions()->get());
         $this->assertCount(0, $user->getPaidSubscriptions()->get());
+    }
+
+    /**
+     * @test
+     * @covers \AdminWeb\Payer\Subscription
+     */
+    public function SetReference()
+    {
+        $user = User::create([
+            'email' => 'igor@igor.com',
+            'name' => 'Igor de Paula',
+            'password' => '123'
+        ]);
+        $item = new Item('Tv', 1, 599);
+        $sub = $user->createSubscription('teste', $item)
+            ->setReference('REF1234')->start();
+        $this->assertCount(1, Subscription::where('reference_id', 'REF1234')->get());
     }
 
     /**
