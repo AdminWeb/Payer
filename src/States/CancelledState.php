@@ -12,10 +12,10 @@ namespace AdminWeb\Payer\States;
 class CancelledState extends AbstractState
 {
 
-    const State = self::Cancelled;
+    const STATE = self::CANCELLED;
 
     public function __toString()
     {
-        return self::State;
+        return self::STATE;
     }
 }

@@ -12,11 +12,11 @@ namespace AdminWeb\Payer\States;
 class ApprovedState extends AbstractState
 {
 
-    const State = self::Approved;
+    const STATE = self::APPROVED;
 
     public function __toString()
     {
-        return self::State;
+        return self::STATE;
     }
 
     public function cancel()

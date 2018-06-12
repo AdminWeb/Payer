@@ -15,16 +15,16 @@ class FactoryState
     {
         $factoredState = null;
         switch ($state) {
-            case StateInterface::Pendent == $state:
+            case StateInterface::PENDENT == $state:
                 $factoredState = new PendentState();
                 break;
-            case StateInterface::Paid == $state:
+            case StateInterface::PAID == $state:
                 $factoredState = new PaidState();
                 break;
-            case StateInterface::Cancelled == $state:
+            case StateInterface::CANCELLED == $state:
                 $factoredState = new CancelledState();
                 break;
-            case StateInterface::Approved == $state:
+            case StateInterface::APPROVED == $state:
                 $factoredState = new ApprovedState();
                 break;
         }

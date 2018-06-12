@@ -11,10 +11,10 @@ namespace AdminWeb\Payer\States;
 
 class PaidState extends AbstractState
 {
-    const State = self::Paid;
+    const STATE = self::PAID;
 
     public function __toString()
     {
-        return self::State;
+        return self::STATE;
     }
 }

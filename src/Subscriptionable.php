@@ -25,22 +25,22 @@ trait Subscriptionable
 
     public function getApprovedSubscriptions()
     {
-        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::Approved);
+        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::APPROVED);
     }
 
     public function getPendentsSubscriptions()
     {
-        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::Pendent);
+        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::PENDENT);
     }
 
     public function getCancelledSubscriptions()
     {
-        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::Cancelled);
+        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::CANCELLED);
     }
 
     public function getPaidSubscriptions()
     {
-        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::Paid);
+        return Subscription::where('subscriptionable_id', $this->id)->where('subscriptionable_type', get_class($this))->where('status', StateInterface::PAID);
     }
 
     public function getSubscription()

@@ -90,7 +90,7 @@ class PayerTest extends TestCase
         $item = new Item('Tv', 1, 599);
         $sub = $user->createSubscription('teste', $item)->start();
         $this->assertCount(1, $user->getSubscription()->get());
-        $this->assertEquals(StateInterface::Pendent, $user->getSubscription()->get()->first()->status);
+        $this->assertEquals(StateInterface::PENDENT, $user->getSubscription()->get()->first()->status);
         $this->assertTrue($sub->isPending());
     }
 

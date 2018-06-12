@@ -10,13 +10,13 @@ namespace AdminWeb\Payer\States;
 
 interface StateInterface
 {
-    const Paid = 'PAID';
+    const PAID = 'PAID';
 
-    const Cancelled = 'CANCELLED';
+    const CANCELLED = 'CANCELLED';
 
-    const Approved = 'APPROVED';
+    const APPROVED = 'APPROVED';
 
-    const Pendent = 'PENDENT';
+    const PENDENT = 'PENDENT';
 
     public function pay();
 

@@ -11,11 +11,11 @@ namespace AdminWeb\Payer\States;
 
 class PendentState extends AbstractState
 {
-    const State = self::Pendent;
+    const STATE = self::PENDENT;
 
     public function __toString()
     {
-        return self::State;
+        return self::STATE;
     }
 
     public function approve()
