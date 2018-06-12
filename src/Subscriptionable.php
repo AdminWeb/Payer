@@ -14,9 +14,9 @@ use AdminWeb\Payer\States\StateInterface;
 
 trait Subscriptionable
 {
-    public function createSubscription($name, ItemableInterface $item)
+    public function createSubscription($name, ItemableInterface $item, DateTime $trial = null, DateTime $end = null)
     {
-        $subscription = new SubscriptionBuilder($this);
+        $subscription = new SubscriptionBuilder($this, $trial, $end);
         $subscription->setPlan($name)
             ->setItem($item)
             ->setName($name);
