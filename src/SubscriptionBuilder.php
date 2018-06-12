@@ -137,9 +137,9 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
      * @param mixed $reference
      * @return SubscriptionBuilder
      */
-    public function setReference()
+    public function setReference($reference = null)
     {
-        $this->reference = Str::uuid();
+        $this->reference = $reference ? $reference : Str::uuid();
         return $this;
     }
 
