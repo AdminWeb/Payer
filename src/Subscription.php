@@ -20,6 +20,11 @@ class Subscription extends Model
 {
     protected $fillable = ['subscriptionable_id','value', 'subscriptionable_type', 'status', 'name', 'transaction_id', 'reference_id', 'provider', 'plan', 'trial_end_at', 'end_at'];
 
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->status = app()->make('InitialState') ;
+    }
     public function getStatusAttribute($value)
     {
         return FactoryState::get($value);

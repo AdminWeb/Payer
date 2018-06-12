@@ -9,6 +9,7 @@
 namespace AdminWeb\Payer;
 
 
+use AdminWeb\Payer\States\PendentState;
 use Illuminate\Support\ServiceProvider;
 
 class PayerServiceProvider extends ServiceProvider
@@ -29,6 +30,8 @@ class PayerServiceProvider extends ServiceProvider
 
     public function register()
     {
-
+        $this->app->bind('InitialState',function(){
+            return new PendentState();
+        });
     }
 }

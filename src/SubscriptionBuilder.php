@@ -12,54 +12,28 @@ use AdminWeb\Payer\Itemable\ItemableInterface;
 use DateTime;
 use Illuminate\Support\Str;
 
-class SubscriptionBuilder
+class SubscriptionBuilder implements SubscriptionBuilderInterface
 {
     private $owner;
     private $reference;
     private $provider;
     private $plan;
     private $item;
-
-    /**
-     * @return mixed
-     */
-    public function getItem()
-    {
-        return $this->item;
-    }
-
-    /**
-     * @param mixed $item
-     * @return SubscriptionBuilder
-     */
-    public function setItem(ItemableInterface $item)
-    {
-        $this->item = $item;
-        return $this;
-    }
-
     /**
      * @var DateTime
      */
     private $trial;
-
     /**
      * @var DateTime
      */
     private $end;
 
-    public function __construct($owner)
+    public function __construct($owner, DateTime $trial = null, DateTime $end = null)
     {
         $this->setOwner($owner);
         $this->setReference();
-    }
-
-    /**
-     * @return null
-     */
-    public function getName()
-    {
-        return $this->name;
+        $this->setEnd($end);
+        $this->setTrial($trial);
     }
 
     /**
@@ -72,40 +46,46 @@ class SubscriptionBuilder
         return $this;
     }
 
+    public function start()
+    {
+        $this->setProvider();
+        $subscription = Subscription::create([
+            'name' => $this->getName(),
+            'plan' => $this->getPlan(),
+            'provider' => $this->getProvider(),
+            'value' => $this->getItem()->getTotal(),
+            'reference_id' => $this->getReference(),
+            'subscriptionable_id' => $this->getOwner()->id,
+            'subscriptionable_type' => get_class($this->getOwner()),
+            'trial_end_at' => $this->getTrial(),
+            'end_at' => $this->getEnd()
+        ]);
+        return $subscription;
+    }
+
+    /**
+     * @return null
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
     /**
      * @return mixed
      */
-    public function getOwner()
+    public function getPlan()
     {
-        return $this->owner;
+        return $this->plan;
     }
 
     /**
-     * @param mixed $owner
+     * @param mixed $plan
      * @return SubscriptionBuilder
      */
-    public function setOwner($owner)
+    public function setPlan($plan)
     {
-        $this->owner = $owner;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getReference()
-    {
-        return $this->reference;
-    }
-
-    /**
-     * @param mixed $reference
-     * @return SubscriptionBuilder
-     */
-    public function setReference()
-    {
-        $this->reference = Str::uuid();
+        $this->plan = $plan;
         return $this;
     }
 
@@ -130,18 +110,54 @@ class SubscriptionBuilder
     /**
      * @return mixed
      */
-    public function getPlan()
+    public function getItem()
     {
-        return $this->plan;
+        return $this->item;
     }
 
     /**
-     * @param mixed $plan
+     * @param mixed $item
      * @return SubscriptionBuilder
      */
-    public function setPlan($plan)
+    public function setItem(ItemableInterface $item)
     {
-        $this->plan = $plan;
+        $this->item = $item;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReference()
+    {
+        return $this->reference;
+    }
+
+    /**
+     * @param mixed $reference
+     * @return SubscriptionBuilder
+     */
+    public function setReference()
+    {
+        $this->reference = Str::uuid();
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param mixed $owner
+     * @return SubscriptionBuilder
+     */
+    public function setOwner($owner)
+    {
+        $this->owner = $owner;
         return $this;
     }
 
@@ -179,25 +195,6 @@ class SubscriptionBuilder
     {
         $this->end = $end;
         return $this;
-    }
-
-    public function start(DateTime $trial = null, DateTime $end = null)
-    {
-        $this->setEnd($end);
-        $this->setTrial($trial);
-        $this->setProvider();
-        $subscription = Subscription::create([
-            'name' => $this->getName(),
-            'plan' => $this->getPlan(),
-            'provider' => $this->getProvider(),
-            'value' => $this->getItem()->getTotal(),
-            'reference_id' => $this->getReference(),
-            'subscriptionable_id' => $this->getOwner()->id,
-            'subscriptionable_type' => get_class($this->getOwner()),
-            'trial_end_at' => $this->getTrial(),
-            'end_at' => $this->getEnd()
-        ]);
-        return $subscription;
     }
 
 }
