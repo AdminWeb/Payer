@@ -46,8 +46,9 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
         return $this;
     }
 
-    public function start()
+    public function start($reference = null)
     {
+        $this->setReference($reference);
         $this->setProvider();
         $subscription = app()->make(SubscriptionInterface::class);
         $subscription->fill([

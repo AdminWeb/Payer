@@ -72,8 +72,8 @@ class PayerTest extends TestCase
         ]);
         $item = new Item('Tv', 1, 599);
         $sub = $user->createSubscription('teste', $item)
-            ->setReference('REF1234')->start();
-        $this->assertCount(1, Subscription::where('reference_id', 'REF1234')->get());
+            ->start();
+        $this->assertCount(1, Subscription::where('reference_id', $sub->reference_id)->get());
     }
 
     /**
