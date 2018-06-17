@@ -73,6 +73,7 @@ class PayerTest extends TestCase
         $item = new Item('Tv', 1, 599);
         $sub = $user->createSubscription('teste', $item)
             ->start();
+        $this->assertInstanceOf(Item::class, $sub->getItem());
         $this->assertCount(1, Subscription::where('reference_id', $sub->reference_id)->get());
     }
 
