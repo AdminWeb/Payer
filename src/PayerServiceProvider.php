@@ -33,5 +33,8 @@ class PayerServiceProvider extends ServiceProvider
         $this->app->bind('InitialState',function(){
             return new PendentState();
         });
+        $this->app->bind(SubscriptionInterface::class,function(){
+            return new Subscription();
+        });
     }
 }

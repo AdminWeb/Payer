@@ -49,7 +49,8 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
     public function start()
     {
         $this->setProvider();
-        $subscription = Subscription::create([
+        $subscription = app()->make(SubscriptionInterface::class);
+        $subscription->fill([
             'name' => $this->getName(),
             'plan' => $this->getPlan(),
             'provider' => $this->getProvider(),
@@ -58,8 +59,10 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
             'subscriptionable_id' => $this->getOwner()->id,
             'subscriptionable_type' => get_class($this->getOwner()),
             'trial_end_at' => $this->getTrial(),
-            'end_at' => $this->getEnd()
-        ]);
+            'end_at' => $this->getEnd(),
+            'status' => app()->make('InitialState')
+        ])->save();
+        //$subscription = Subscription::create();
         return $subscription;
     }
 
