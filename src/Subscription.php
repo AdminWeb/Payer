@@ -8,6 +8,7 @@
 
 namespace AdminWeb\Payer;
 
+use AdminWeb\Payer\Itemable\ItemableInterface;
 use AdminWeb\Payer\States\ApprovedState;
 use AdminWeb\Payer\States\CancelledState;
 use AdminWeb\Payer\States\FactoryState;
@@ -20,6 +21,8 @@ class Subscription extends Model implements SubscriptionInterface
 {
     protected $fillable = ['subscriptionable_id','value', 'subscriptionable_type', 'status', 'name', 'transaction_id', 'reference_id', 'provider', 'plan', 'trial_end_at', 'end_at'];
 
+    protected $item = [];
+
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
@@ -27,6 +30,24 @@ class Subscription extends Model implements SubscriptionInterface
     public function getStatusAttribute($value)
     {
         return FactoryState::get($value);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getItem()
+    {
+        return $this->item;
+    }
+
+    /**
+     * @param mixed $item
+     * @return SubscriptionBuilder
+     */
+    public function setItem(ItemableInterface $item)
+    {
+        $this->item = $item;
+        return $this;
     }
 
     public function approve()

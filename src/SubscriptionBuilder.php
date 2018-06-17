@@ -61,7 +61,9 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
             'trial_end_at' => $this->getTrial(),
             'end_at' => $this->getEnd(),
             'status' => app()->make('InitialState')
-        ])->save();
+        ])
+            ->setItem($this->getItem())
+            ->save();
         //$subscription = Subscription::create();
         return $subscription;
     }
