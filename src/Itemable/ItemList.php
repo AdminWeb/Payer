@@ -38,7 +38,7 @@ class ItemList implements ItemableInterface
     }
 
     /**
-     * @return array
+     * @return ArrayObject
      */
     public function getItem(): ArrayObject
     {

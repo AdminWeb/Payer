@@ -11,5 +11,5 @@ namespace AdminWeb\Payer;
 
 interface SubscriptionInterface
 {
-
+    public function fill(array $attributes);
 }

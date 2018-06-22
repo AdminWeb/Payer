@@ -19,6 +19,7 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
     private $provider;
     private $plan;
     private $item;
+    private $name;
     /**
      * @var DateTime
      */
@@ -51,6 +52,7 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
         $this->setReference($reference);
         $this->setProvider();
         $subscription = app()->make(SubscriptionInterface::class);
+        
         $subscription->fill([
             'name' => $this->getName(),
             'plan' => $this->getPlan(),
@@ -65,7 +67,6 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
         ])
             ->setItem($this->getItem())
             ->save();
-        //$subscription = Subscription::create();
         return $subscription;
     }
 
