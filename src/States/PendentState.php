@@ -13,6 +13,8 @@ class PendentState extends AbstractState
 {
     const STATE = self::PENDENT;
 
+    const CODE = 0;
+
     public function __toString()
     {
         return self::STATE;

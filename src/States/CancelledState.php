@@ -14,6 +14,8 @@ class CancelledState extends AbstractState
 
     const STATE = self::CANCELLED;
 
+    const CODE = 3;
+
     public function __toString()
     {
         return self::STATE;

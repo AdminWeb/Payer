@@ -13,21 +13,15 @@ class FactoryState
 {
     static public function get($state)
     {
-        $factoredState = null;
-        switch ($state) {
-            case StateInterface::PENDENT == $state:
-                $factoredState = new PendentState();
-                break;
-            case StateInterface::PAID == $state:
-                $factoredState = new PaidState();
-                break;
-            case StateInterface::CANCELLED == $state:
-                $factoredState = new CancelledState();
-                break;
-            case StateInterface::APPROVED == $state:
-                $factoredState = new ApprovedState();
-                break;
+        $states = [
+            PendentState::CODE => new PendentState(),
+            PaidState::CODE => new PaidState(),
+            CancelledState::CODE => new CancelledState(),
+            ApprovedState::CODE => new ApprovedState()
+        ];
+        if (!array_key_exists($state, $states)) {
+            throw new StateException('Unknow State');
         }
-        return $factoredState;
+        return $states[$state];
     }
 }

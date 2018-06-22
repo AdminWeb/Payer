@@ -14,6 +14,8 @@ class ApprovedState extends AbstractState
 
     const STATE = self::APPROVED;
 
+    const CODE = 4;
+
     public function __toString()
     {
         return self::STATE;

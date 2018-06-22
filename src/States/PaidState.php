@@ -13,6 +13,8 @@ class PaidState extends AbstractState
 {
     const STATE = self::PAID;
 
+    const CODE = 1;
+
     public function __toString()
     {
         return self::STATE;
