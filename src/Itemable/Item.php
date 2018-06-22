@@ -100,7 +100,7 @@ class Item implements ItemableInterface
     }
 
     /**
-     * @param null $id
+     * @param $id
      * @return Item
      */
     public function setidItem($idItem)

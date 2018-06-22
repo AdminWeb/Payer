@@ -37,7 +37,7 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
     }
 
     /**
-     * @param null $name
+     * @param string $name
      * @return SubscriptionBuilder
      */
     public function setName($name)
@@ -70,7 +70,7 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
     }
 
     /**
-     * @return null
+     * @return string
      */
     public function getName()
     {
@@ -122,7 +122,7 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
     }
 
     /**
-     * @param mixed $item
+     * @param \AdminWeb\Payer\Itemable\ItemableInterface $item
      * @return SubscriptionBuilder
      */
     public function setItem(ItemableInterface $item)

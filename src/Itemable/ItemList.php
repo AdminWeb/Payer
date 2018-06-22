@@ -46,7 +46,7 @@ class ItemList implements ItemableInterface
     }
 
     /**
-     * @param array $item
+     * @param ItemList $item
      */
     public function setItem(array $item): ItemList
     {

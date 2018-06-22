@@ -41,8 +41,8 @@ class Subscription extends Model implements SubscriptionInterface
     }
 
     /**
-     * @param mixed $item
-     * @return SubscriptionBuilder
+     * @param \AdminWeb\Payer\Itemable\ItemableInterface $item
+     * @return Subscription
      */
     public function setItem(ItemableInterface $item)
     {
