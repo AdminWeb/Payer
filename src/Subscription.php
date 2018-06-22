@@ -33,7 +33,7 @@ class Subscription extends Model implements SubscriptionInterface
     }
 
     /**
-     * @return mixed
+     * @return ItemableInterface
      */
     public function getItem()
     {
