@@ -14,14 +14,14 @@ class FactoryState
     static public function get($state)
     {
         $states = [
-            PendentState::CODE => new PendentState(),
-            PaidState::CODE => new PaidState(),
-            CancelledState::CODE => new CancelledState(),
-            ApprovedState::CODE => new ApprovedState()
+            PendentState::STATE => new PendentState(),
+            PaidState::STATE => new PaidState(),
+            CancelledState::STATE => new CancelledState(),
+            ApprovedState::STATE => new ApprovedState()
         ];
-        if (!array_key_exists($state, $states)) {
+        if (!in_array($state, $states)) {
             throw new StateException('Unknow State');
         }
-        return $states[$state];
+        return $states["{$state}"];
     }
 }
