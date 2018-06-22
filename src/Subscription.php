@@ -21,6 +21,9 @@ class Subscription extends Model implements SubscriptionInterface
 {
     protected $fillable = ['subscriptionable_id','value', 'subscriptionable_type', 'status', 'name', 'transaction_id', 'reference_id', 'provider', 'plan', 'trial_end_at', 'end_at'];
 
+    /**
+     * @var \AdminWeb\Payer\Itemable\ItemableInterface
+     */
     protected $item = [];
 
     public function __construct(array $attributes = [])
