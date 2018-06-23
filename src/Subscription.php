@@ -19,6 +19,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscription extends Model implements SubscriptionInterface
 {
+    private $reference_id;
+
     protected $fillable = ['subscriptionable_id','value', 'subscriptionable_type', 'status', 'name', 'transaction_id', 'reference_id', 'provider', 'plan', 'trial_end_at', 'end_at'];
 
     /**
