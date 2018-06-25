@@ -26,7 +26,7 @@ class Subscription extends Model implements SubscriptionInterface
     /**
      * @var \AdminWeb\Payer\Itemable\ItemableInterface
      */
-    protected $item = [];
+    protected $item;
 
     public function __construct(array $attributes = [])
     {

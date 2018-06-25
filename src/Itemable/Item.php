@@ -16,9 +16,9 @@ class Item implements ItemableInterface
 
     /**
      * Item constructor.
-     * @param $name
-     * @param $quantity
-     * @param $amount
+     * @param string $name
+     * @param number $quantity
+     * @param number $amount
      */
     public function __construct($name, $quantity, $amount)
     {
@@ -100,7 +100,7 @@ class Item implements ItemableInterface
     }
 
     /**
-     * @param $id
+     * @param mixed $idItem
      * @return Item
      */
     public function setidItem($idItem)
